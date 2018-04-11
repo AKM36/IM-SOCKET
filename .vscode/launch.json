@@ -1,0 +1,70 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "socket.pm2",
+      "runtimeExecutable": "pm2",
+      "runtimeArgs": [
+        "startOrRestart",
+        "./pm2.config.js",
+        "--env",
+        "production",
+        "--only",
+        "IMSOCKET"
+      ],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "server.pm2",
+      "runtimeExecutable": "pm2",
+      "runtimeArgs": [
+        "startOrRestart",
+        "./pm2.config.js",
+        "--env",
+        "production",
+        "--only",
+        "IMAPI"
+      ],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "server",
+      "program": "${workspaceFolder}/server/server.js",
+      "args": [
+        // "--model",
+        // "development"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "socket",
+      "program": "${workspaceFolder}/server/socket.js",
+      "args": [
+        // "--model",
+        // "development"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "dev",
+      "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+      "args": [
+        "--inline",
+        "--progress",
+        "--config",
+        "build/webpack.dev.conf.js"
+      ]
+    }
+  ]
+}
